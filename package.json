@@ -1,0 +1,15 @@
+{
+  "name": "treering-lab",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc --noEmit && esbuild src/main.ts --bundle --minify --outfile=dist/bundle.js && node scripts/build-html.mjs",
+    "test": "esbuild test/run-tests.ts --bundle --platform=node --outfile=dist/run-tests.cjs && node dist/run-tests.cjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "esbuild": "^0.24.0"
+  }
+}
