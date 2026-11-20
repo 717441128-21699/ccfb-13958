@@ -1,0 +1,22 @@
+{
+  "name": "ring-measure",
+  "version": "1.0.0",
+  "private": true,
+  "description": "网页版树木年轮测量与交叉定年系统（边界识别 / 早晚材 / 伪年轮缺轮提示 / 交叉定年）",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "demo": "tsx scripts/generate-demo.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8",
+    "tsx": "^4.19.2"
+  }
+}

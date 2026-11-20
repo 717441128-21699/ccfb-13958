@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>树芯年轮测量与交叉定年系统</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">🌲</span>
+        <div>
+          <h1>树芯年轮测量与交叉定年系统</h1>
+          <p>自动边界识别 · 早晚材分测 · 伪轮/缺轮提示 · COFECHA 风格交叉定年</p>
+        </div>
+      </div>
+      <div class="actions">
+        <label class="btn secondary">
+          导入扫描图
+          <input id="fileInput" type="file" accept="image/*" multiple hidden />
+        </label>
+        <button id="demoBtn" class="btn primary">载入合成演示数据</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <h2>树芯列表</h2>
+        <ul id="sampleList" class="sample-list"></ul>
+        <div class="sidebar-tip">
+          <h3>操作说明</h3>
+          <ul>
+            <li>滚轮缩放，按住空白拖动平移</li>
+            <li>拖动边界线调整位置</li>
+            <li>双击空白处新增边界</li>
+            <li>右键边界线删除</li>
+            <li>任何修改后年宽与定年自动重算</li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="toolbar">
+          <button id="detectBtn" class="btn primary" disabled>自动识别边界</button>
+          <button id="dateBtn" class="btn" disabled>交叉定年</button>
+          <button id="chronoBtn" class="btn" disabled>构建样地年表</button>
+          <span id="statusText" class="status"></span>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="coreCanvas"></canvas>
+          <div id="legend" class="legend">
+            <span><i style="background:#2ecc71"></i>自动边界</span>
+            <span><i style="background:#3498db"></i>人工新增</span>
+            <span><i style="background:#f1c40f"></i>人工移动</span>
+            <span><i style="background:#e6a700"></i>伪轮</span>
+            <span><i style="background:#d62728"></i>缺轮</span>
+            <span><i style="background:#8c8c8c"></i>弱边界</span>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="measure">年宽测量（早材/晚材）</button>
+          <button class="tab" data-tab="dating">交叉定年</button>
+          <button class="tab" data-tab="chronology">样地年表</button>
+          <button class="tab" data-tab="truth">合成真值核对</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-measure">
+          <div class="table-wrap">
+            <table id="measureTable">
+              <thead>
+                <tr>
+                  <th>#</th><th>日历年</th><th>总宽 mm</th><th>早材 mm</th>
+                  <th>晚材 mm</th><th>晚材率</th><th>置信度</th><th>来源</th><th>告警</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="tab-dating">
+          <div id="datingContent" class="dating-empty">尚未定年：识别边界后点击「交叉定年」。</div>
+        </div>
+
+        <div class="tab-panel" id="tab-chronology">
+          <div id="chronoContent" class="dating-empty">尚未构建年表：先完成各芯定年，再点击「构建样地年表」。</div>
+        </div>
+
+        <div class="tab-panel" id="tab-truth">
+          <div id="truthContent" class="dating-empty">载入合成演示数据后，这里显示盲测芯的真值与识别结果对照。</div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="../main.ts"></script>
+  </body>
+</html>
